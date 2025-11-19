@@ -13,26 +13,29 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
-        <div>
-            <div className="border-b border-gray-700 mb-6">
-                <nav className="-mb-px flex space-x-6" aria-label="Tabs">
+        <div className="flex flex-col space-y-8">
+            <div className="flex justify-center">
+                <div className="bg-white/50 p-1.5 rounded-full border border-white/40 inline-flex backdrop-blur-md relative shadow-sm">
                     {tabs.map((tab, index) => (
                         <button
                             key={tab.label}
                             onClick={() => setActiveTab(index)}
-                            className={`${
+                            className={`relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 focus:outline-none ${
                                 activeTab === index
-                                    ? 'border-accent text-text-primary'
-                                    : 'border-transparent text-text-secondary hover:text-text-primary hover:border-gray-500'
-                            } whitespace-nowrap py-3 px-1 border-b-2 font-medium text-lg transition-colors focus:outline-none`}
-                            aria-current={activeTab === index ? 'page' : undefined}
+                                    ? 'text-white shadow-md'
+                                    : 'text-slate-500 hover:text-slate-800'
+                            }`}
                         >
                             {tab.label}
+                            {activeTab === index && (
+                                <div className="absolute inset-0 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full -z-10"></div>
+                            )}
                         </button>
                     ))}
-                </nav>
+                </div>
             </div>
-            <div>
+            
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-forwards key={activeTab}">
                 {tabs[activeTab].content}
             </div>
         </div>
