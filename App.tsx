@@ -3,7 +3,7 @@ import Dashboard from './components/Dashboard';
 
 function App() {
   return (
-    <div className="min-h-screen relative bg-slate-50 selection:bg-neon-blue selection:text-white overflow-hidden">
+    <div className="min-h-screen relative bg-slate-50 selection:bg-neon-blue selection:text-white overflow-x-hidden">
       
       {/* Creative Animated Background - "Living Watercolor" */}
       <div className="fixed inset-0 z-0 pointer-events-none">

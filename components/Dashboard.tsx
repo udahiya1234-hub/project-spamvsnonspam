@@ -1,19 +1,49 @@
-import React from 'react';
-import { Target, BarChart3, ShieldAlert, ShieldCheck, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Target, BarChart3, ShieldAlert, ShieldCheck, Zap, HelpCircle } from 'lucide-react';
 import MetricCard from './MetricCard';
 import ComparisonChart from './ComparisonChart';
 import InfoCard from './InfoCard';
 import Tabs from './Tabs';
+import TourGuide from './TourGuide';
 import { modelData, bestModel } from '../constants';
 
 const Dashboard: React.FC = () => {
+    const [isTourOpen, setIsTourOpen] = useState(false);
+
+    const tourSteps = [
+        {
+            targetId: 'tour-header',
+            title: 'Welcome to the Hub',
+            description: 'This dashboard visualizes the results of our comprehensive machine learning analysis on Spam Detection. We tested 6 different algorithms to find the best one.',
+        },
+        {
+            targetId: 'tour-champion',
+            title: 'The Champion Model',
+            description: 'Here is our winner. The Initial SVM (Support Vector Machine) achieved a remarkable 98.2% accuracy, outperforming all other models in our tests.',
+        },
+        {
+            targetId: 'tour-metrics',
+            title: 'Key Performance Metrics',
+            description: 'We track four critical stats. Precision (how many flagged items were actually spam) and Recall (how much actual spam we caught) are the most important for this use case.',
+        },
+        {
+            targetId: 'tour-chart',
+            title: 'Comparative Analysis',
+            description: 'This chart compares all models side-by-side. You can click on the legend items at the bottom to toggle specific metrics on and off for a clearer view.',
+        },
+        {
+            targetId: 'tour-tabs',
+            title: 'Deep Dive',
+            description: 'Use these tabs to switch between this Overview and the "Analysis & Insights" section, where we visualize the vector separation and explain our testing methodology.',
+        }
+    ];
 
     const tabs = [
         {
             label: 'Overview',
             content: (
                 <div className="space-y-8">
-                    <section>
+                    <section id="tour-champion">
                         <div className="flex items-center space-x-3 mb-6">
                              <div className="bg-white/60 p-2 rounded-lg border border-neon-purple/30 shadow-sm">
                                 <Zap className="w-5 h-5 text-neon-purple" />
@@ -23,7 +53,7 @@ const Dashboard: React.FC = () => {
                             </h2>
                         </div>
                         
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="tour-metrics">
                             <MetricCard 
                                 title="Overall Accuracy" 
                                 value={`${(bestModel.accuracy * 100).toFixed(1)}%`} 
@@ -47,7 +77,7 @@ const Dashboard: React.FC = () => {
                         </div>
                     </section>
 
-                    <section className="glass-panel p-1 rounded-3xl">
+                    <section className="glass-panel p-1 rounded-3xl" id="tour-chart">
                          <div className="bg-white/50 rounded-[20px] p-6 sm:p-8">
                             <div className="mb-6">
                                 <h3 className="text-xl font-bold text-slate-800">Model Comparison Analysis</h3>
@@ -150,24 +180,42 @@ const Dashboard: React.FC = () => {
 
     return (
         <main className="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
-            <header className="mb-12 text-center sm:text-left relative">
-                <div className="absolute top-0 right-0 hidden sm:block opacity-40 pointer-events-none">
-                    <div className="w-64 h-64 bg-neon-blue/30 rounded-full blur-[100px] mix-blend-multiply"></div>
+            <TourGuide 
+                steps={tourSteps} 
+                isOpen={isTourOpen} 
+                onClose={() => setIsTourOpen(false)} 
+            />
+
+            <header className="mb-12 text-center sm:text-left relative flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6" id="tour-header">
+                <div>
+                    <div className="absolute top-0 right-0 hidden sm:block opacity-40 pointer-events-none">
+                        <div className="w-64 h-64 bg-neon-blue/30 rounded-full blur-[100px] mix-blend-multiply"></div>
+                    </div>
+                    
+                    <div className="inline-flex items-center px-3 py-1 rounded-full border border-neon-blue/30 bg-white/60 backdrop-blur text-neon-blue text-xs font-bold tracking-wider uppercase mb-4 shadow-sm">
+                        <span className="w-2 h-2 rounded-full bg-neon-blue mr-2 animate-pulse"></span>
+                        Live Analysis Dashboard
+                    </div>
+                    <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 tracking-tight mb-4">
+                        Spam Detection <br className="hidden sm:block" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink">
+                            Performance Hub
+                        </span>
+                    </h1>
+                    <p className="text-lg text-slate-500 max-w-2xl leading-relaxed font-medium">
+                        Deep dive into the efficacy of Machine Learning models in classifying unsolicited messages. Powered by Google Colab analysis.
+                    </p>
                 </div>
                 
-                <div className="inline-flex items-center px-3 py-1 rounded-full border border-neon-blue/30 bg-white/60 backdrop-blur text-neon-blue text-xs font-bold tracking-wider uppercase mb-4 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-neon-blue mr-2 animate-pulse"></span>
-                    Live Analysis Dashboard
-                </div>
-                <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 tracking-tight mb-4">
-                    Spam Detection <br className="hidden sm:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink">
-                        Performance Hub
-                    </span>
-                </h1>
-                <p className="text-lg text-slate-500 max-w-2xl leading-relaxed font-medium">
-                    Deep dive into the efficacy of Machine Learning models in classifying unsolicited messages. Powered by Google Colab analysis.
-                </p>
+                <button 
+                    onClick={() => setIsTourOpen(true)}
+                    className="group flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 hover:border-neon-purple/50 text-slate-700 font-semibold rounded-full shadow-sm hover:shadow-lg hover:shadow-neon-purple/20 transition-all duration-300"
+                >
+                    <div className="bg-neon-purple/10 p-1.5 rounded-full group-hover:bg-neon-purple group-hover:text-white transition-colors">
+                        <HelpCircle size={18} />
+                    </div>
+                    <span>Start Guided Tour</span>
+                </button>
             </header>
             
             <Tabs tabs={tabs} />

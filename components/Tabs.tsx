@@ -13,7 +13,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
-        <div className="flex flex-col space-y-8">
+        <div className="flex flex-col space-y-8" id="tour-tabs">
             <div className="flex justify-center">
                 <div className="bg-white/50 p-1.5 rounded-full border border-white/40 inline-flex backdrop-blur-md relative shadow-sm">
                     {tabs.map((tab, index) => (
