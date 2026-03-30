@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
         {
             targetId: 'tour-champion',
             title: 'The Champion Model',
-            description: 'Here is our winner. The Initial SVM (Support Vector Machine) achieved a remarkable 98.2% accuracy, outperforming all other models in our tests.',
+            description: 'Here is our winner. The BERT (Transformer) model achieved a remarkable 99.75% accuracy and perfect 100% recall, outperforming all traditional models in our tests.',
         },
         {
             targetId: 'tour-metrics',
@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
                                 <Zap className="w-5 h-5 text-neon-purple" />
                              </div>
                             <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
-                                Champion Model: <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Initial SVM</span>
+                                Champion Model: <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">BERT (Transformer)</span>
                             </h2>
                         </div>
                         
@@ -100,15 +100,15 @@ const Dashboard: React.FC = () => {
                                 <ul className="space-y-4 list-none text-slate-600">
                                     <li className="flex items-start">
                                         <span className="inline-block w-2 h-2 mt-2 mr-3 rounded-full bg-neon-blue shadow-[0_0_8px_rgba(14,165,233,0.6)]"></span>
-                                        <span><strong className="text-slate-800">SVM Dominance:</strong> Both Initial and Tuned SVM models achieved the highest accuracy (~98.2%) and robust spam detection metrics, making them the top contenders.</span>
+                                        <span><strong className="text-slate-800">BERT Dominance:</strong> The deep learning extension using a pre-trained BERT model achieved near-perfect accuracy (99.75%) and a flawless 100% recall on the test subset.</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="inline-block w-2 h-2 mt-2 mr-3 rounded-full bg-neon-purple shadow-[0_0_8px_rgba(139,92,246,0.6)]"></span>
+                                        <span><strong className="text-slate-800">The Context Edge:</strong> While traditional models (like SVM) scored ~0.88 recall, BERT scored 1.00. BERT is far better at detecting 'tricky' spam that uses common words in unusual contexts.</span>
                                     </li>
                                     <li className="flex items-start">
                                         <span className="inline-block w-2 h-2 mt-2 mr-3 rounded-full bg-neon-green shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
-                                        <span><strong className="text-slate-800">Precision vs Recall:</strong> Random Forest offered excellent precision (99%) but lagged in recall (81%), meaning it missed some spam messages compared to SVM.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="inline-block w-2 h-2 mt-2 mr-3 rounded-full bg-neon-pink shadow-[0_0_8px_rgba(236,72,153,0.6)]"></span>
-                                        <span><strong className="text-slate-800">Weakest Links:</strong> Naive Bayes and Logistic Regression struggled specifically with identifying spam (low recall), despite being generally accurate on safe messages.</span>
+                                        <span><strong className="text-slate-800">Strong Baselines:</strong> Both Initial and Tuned SVM models achieved high accuracy (~98.2%), making them excellent lightweight alternatives to the heavier Transformer model.</span>
                                     </li>
                                 </ul>
                             </InfoCard>
@@ -134,29 +134,29 @@ const Dashboard: React.FC = () => {
                          {/* Image Card 2 */}
                          <div className="relative h-64 lg:h-auto rounded-2xl overflow-hidden glass-panel border-0 group order-2 lg:order-1 min-h-[250px] shadow-lg">
                             <img 
-                                src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=1000" 
-                                alt="System Architecture" 
+                                src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000" 
+                                alt="AI Network" 
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
                              <div className="absolute bottom-0 left-0 p-6">
                                 <span className="px-2 py-1 text-xs font-bold text-white bg-neon-pink/80 backdrop-blur-md rounded uppercase tracking-wider mb-2 inline-block">Architecture</span>
-                                <h4 className="text-white font-bold text-lg">Data Integrity</h4>
-                                <p className="text-sm text-gray-200 mt-1">Strict isolation of test datasets.</p>
+                                <h4 className="text-white font-bold text-lg">Transformer Network</h4>
+                                <p className="text-sm text-gray-200 mt-1">Deep contextual understanding with BERT.</p>
                             </div>
                          </div>
                          
                          <div className="lg:col-span-2 flex flex-col gap-6 order-1 lg:order-2">
-                            <InfoCard title="Leakage Prevention Strategy">
-                                <p className="text-slate-600 mb-4">To ensure the integrity of our results, we implemented strict isolation protocols:</p>
+                            <InfoCard title="Deep Learning Strategy">
+                                <p className="text-slate-600 mb-4">To balance performance and training time, we implemented a targeted fine-tuning approach:</p>
                                 <ul className="space-y-3">
                                     <li className="bg-white/60 p-3 rounded-lg border border-slate-200 hover:bg-white/80 transition-colors shadow-sm">
-                                        <strong className="text-neon-blue block mb-1">Strict Data Splitting</strong>
-                                        <span className="text-sm text-slate-600">Dataset was split into training/test sets before any processing occurred.</span>
+                                        <strong className="text-neon-blue block mb-1">Subset Training</strong>
+                                        <span className="text-sm text-slate-600">We used a 2,000-row subset for BERT. Training on the full dataset is time-consuming, while 2,000 rows provides a statistically significant sample under 5 minutes.</span>
                                     </li>
                                     <li className="bg-white/60 p-3 rounded-lg border border-slate-200 hover:bg-white/80 transition-colors shadow-sm">
-                                        <strong className="text-neon-purple block mb-1">Isolated Vectorization</strong>
-                                        <span className="text-sm text-slate-600">The <code className="text-neon-pink bg-slate-100 border border-slate-200 px-1 py-0.5 rounded font-semibold">TfidfVectorizer</code> was fit <em>only</em> on training data. Vocabulary from the test set was completely ignored during training.</span>
+                                        <strong className="text-neon-purple block mb-1">Pre-trained Foundation</strong>
+                                        <span className="text-sm text-slate-600">We utilized <code className="text-neon-pink bg-slate-100 border border-slate-200 px-1 py-0.5 rounded font-semibold">bert-base-uncased</code>, leveraging its ~110 million parameters and deep understanding of English language semantics.</span>
                                     </li>
                                 </ul>
                             </InfoCard>
@@ -167,7 +167,7 @@ const Dashboard: React.FC = () => {
                                 <div>
                                     <h4 className="text-lg font-bold text-slate-800 mb-1">Why this matters?</h4>
                                     <p className="text-sm text-slate-600">
-                                        Fitting vectorizers on the whole dataset gives models "future knowledge" of words they shouldn't see yet. Our method ensures the 98.2% accuracy is <strong>real</strong> and reproducible in production.
+                                        Traditional models rely on word frequencies (TF-IDF). BERT understands <strong>context</strong>. This allows it to catch sophisticated spam that avoids typical trigger words, resulting in a perfect 1.00 recall score.
                                     </p>
                                 </div>
                             </div>
